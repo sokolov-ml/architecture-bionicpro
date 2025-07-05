@@ -1,6 +1,5 @@
 {
-  "name": "keycloak-resource-server",
-  "type": "module",
+  "name": "api",
   "scripts": {
     "start": "node app.js"
   },
@@ -9,6 +8,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^4.18.2",
+    "express-session": "^1.18.1",
     "keycloak-connect": "26.1.1"
   },
   "devDependencies": {

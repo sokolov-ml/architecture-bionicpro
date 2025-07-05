@@ -1,13 +1,15 @@
-import express from "express";
-import Keycloak from "keycloak-connect";
-import cors from "cors";
+const express = require("express");
+const session = require("express-session");
+const Keycloak = require("keycloak-connect");
+const cors = require("cors");
 
 const app = express();
 const port = 8000;
 
-app.use(cors()); // <--- CORS middleware
+app.use(cors());
 
-const keycloak = new Keycloak({});
+const memoryStore = new session.MemoryStore();
+const keycloak = new Keycloak({ store: memoryStore });
 
 app.use(keycloak.middleware());
 

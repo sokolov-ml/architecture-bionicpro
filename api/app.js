@@ -34,6 +34,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// GET /public
+app.get("/public", (req, res) => {
+  console.log(`Serving /public`);
+  res.json({ message: "public" });
+});
+
 app.use(keycloak.protect());
 
 app.use((req, res, next) => {
@@ -47,7 +53,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/reports", (req, res) => {
+// GET /protected
+app.get("/protected", (req, res) => {
+  console.log(`Serving /protected`);
+  res.json({ message: "protected" });
+});
+
+// GET /reports
+app.get("/reports", keycloak.protect("realm:prothetic_user"), (req, res) => {
   console.log(`Serving /reports`);
   res.json({ message: "reports" });
 });
